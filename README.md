@@ -28,3 +28,5 @@ git clone https://github.com/abdelali77/Simple-Shell.git
 ```bash
 npm start
 ```
+## Author
+`Abdelali`
