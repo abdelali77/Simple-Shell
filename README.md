@@ -12,7 +12,7 @@ Before you begin, ensure you have met the following requirements:
 
 - Node.js and npm installed on your system
 
-```code
+```bash
 npm install
 ```
 
