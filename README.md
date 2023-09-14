@@ -19,7 +19,7 @@ npm install
 [Nodejs](https://nodejs.org/en)
 
 ## Installation
-- clone the repository:
+clone the repository:
 ```bash
 git clone https://github.com/abdelali77/Simple-Shell.git
 ```
