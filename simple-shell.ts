@@ -60,8 +60,10 @@ rl.on('line', (input) => {
 
 function printHelp() {
     console.log('Available commands:')
-    console.log('  exit                 - Exit the shell');
-    console.log('  help                 - Display this help message');
-    console.log('  ls [options] [path]  - List files and directories');
-    console.log('  echo [text]          - Print text to the console');
+    console.log('  exit                  - Exit the shell');
+    console.log('  help                  - Display this help message');
+    console.log('  ls [options] [path]   - List files and directories');
+    console.log('  echo [text]           - Print text to the console');
+    console.log('  pwd                   - Print current directory');
+    console.log('  cd <directory>        - Change the current workig directory');
 }
