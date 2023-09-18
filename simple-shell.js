@@ -29,6 +29,25 @@ rl.on('line', function (input) {
             console.log(echoText);
             rl.prompt();
             break;
+        case 'pwd':
+            var pwdChild = (0, child_process_1.spawn)('pwd', args, { stdio: 'inherit' });
+            pwdChild.on('close', function () { return rl.prompt(); });
+            break;
+        case 'cd':
+            if (args.length === 0) {
+                console.log('Usage: cd <directory>');
+            }
+            else {
+                try {
+                    process.chdir(args[0]);
+                    console.log("Current directory: ".concat(process.cwd()));
+                }
+                catch (err) {
+                    console.log("Error: ".concat(err.message));
+                }
+            }
+            rl.prompt();
+            break;
         default:
             console.log("Command not found: ".concat(cmd));
             rl.prompt();

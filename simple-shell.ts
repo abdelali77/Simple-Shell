@@ -31,6 +31,23 @@ rl.on('line', (input) => {
             console.log(echoText)
             rl.prompt()
             break
+        case 'pwd':
+            const pwdChild = spawn('pwd', args, { stdio: 'inherit' });
+            pwdChild.on('close', () => rl.prompt())
+            break;
+        case 'cd':
+            if (args.length === 0) {
+                console.log('Usage: cd <directory>')
+            } else {
+                try {
+                    process.chdir(args[0])
+                    console.log(`Current directory: ${process.cwd()}`)
+                } catch (err:any) {
+                    console.log(`Error: ${err.message}`)
+                }
+            }
+            rl.prompt()
+            break;
         default:
             console.log(`Command not found: ${cmd}`);
             rl.prompt()
