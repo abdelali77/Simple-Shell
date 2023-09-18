@@ -12,22 +12,39 @@ rl.prompt();
 
 rl.on('line', (input) => {
     const command = input.trim();
+    const [cmd, ...args] = command.split(' ');
 
-    if (command === 'exit') {
-        rl.close();
-    } else {
-        const [cmd, ...args] = command.split(' ')
-        const child = spawn(cmd, args, { stdio: 'inherit' })
-
-        child.on('error', (err) => {
-            console.error(err.message)
-        })
-
-        child.on('close', (code) => {
+    switch (cmd) {
+        case 'exit':
+            rl.close();
+            break
+        case 'help':
+            printHelp();
             rl.prompt();
-        })
+            break
+        case 'ls':
+            const lsChild = spawn('ls', args, { stdio: 'inherit' });
+            lsChild.on('close', () => rl.prompt())
+            break
+        case 'echo':
+            const echoText = args.join(' ')
+            console.log(echoText)
+            rl.prompt()
+            break
+        default:
+            console.log(`Command not found: ${cmd}`);
+            rl.prompt()
+            break
     }
 }).on('close', () => {
     console.log('Bye ✌️')
-    process.exit(0);
+    process.exit(0)
 })
+
+function printHelp() {
+    console.log('Available commands:')
+    console.log('  exit                 - Exit the shell');
+    console.log('  help                 - Display this help message');
+    console.log('  ls [options] [path]  - List files and directories');
+    console.log('  echo [text]          - Print text to the console');
+}
