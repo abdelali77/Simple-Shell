@@ -169,6 +169,7 @@ function printHelp() {
     console.log('  touch <file>          - Create an empty file');
     console.log('  date                  - Display the current date and time');
     console.log('  mv <src> <dest>       - move or rename file or direcotry');
-    console.log('  cp <src> <dest>       - Clear the terminal');
+    console.log('  cp <src> <dest>       - Copy files or directories');
+    console.log('  rm <file/direcotry>   - Remove files or directories');
     console.log('  clear                 - Clear the terminal');
 }
