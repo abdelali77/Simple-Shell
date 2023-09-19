@@ -119,6 +119,19 @@ rl.on('line', (input) => {
             }
             break;
 
+        case 'cp':
+            if (args.length !== 2) {
+                console.log('Usage: cp <source> <destination>')
+            } else {
+                const cpChild = spawn('cp', args, { stdio: 'inherit' });
+                cpChild.on('close', () => rl.prompt())
+                cpChild.on('error', (error: Error) => {
+                    console.log(`Error: ${error.message}`)
+                    rl.prompt();
+                })
+            }
+            break;
+
         case 'date':
             const dateChild = spawn('date', args, { stdio: 'inherit' });
             dateChild.on('close', () => rl.prompt());
@@ -152,6 +165,7 @@ function printHelp() {
     console.log('  rmdir <directory>     - remove an empty directory');
     console.log('  touch <file>          - Create an empty file');
     console.log('  date                  - Display the current date and time');
-    console.log('  mv                    - move or rename file or direcotry');
+    console.log('  mv <src> <dest>       - move or rename file or direcotry');
+    console.log('  cp <src> <dest>       - Clear the terminal');
     console.log('  clear                 - Clear the terminal');
 }
