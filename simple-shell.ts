@@ -153,11 +153,6 @@ rl.on('line', (input) => {
             const clearChild = spawn('clear', args, { stdio: 'inherit' });
             clearChild.on('close', () => rl.prompt());
             break;
-
-        default:
-            console.log(`Command not found: ${cmd}`);
-            rl.prompt()
-            break
     }
 }).on('close', () => {
     console.log('Bye ✌️')
