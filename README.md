@@ -2,7 +2,6 @@
 A basic shell implementation in TypeScript that allows you to execute system commands and custom commands
 
 ## Features
-
 - Excute system shell commands
 - Customize the shell prompt
 - Add and execute custom commands
@@ -11,7 +10,6 @@ A basic shell implementation in TypeScript that allows you to execute system com
 Before you begin, ensure you have met the following requirements:
 
 - Node.js and npm installed on your system
-
 ```bash
 npm install
 ```
