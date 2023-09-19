@@ -132,6 +132,18 @@ rl.on('line', (input) => {
             }
             break;
 
+        case 'rm':
+            if (args.length === 0) {
+                console.log('Usage: rm <file/direcotry>');
+            } else {
+                const rmChild = spawn('rm', args, { stdio: 'inherit' });
+                rmChild.on('close', () => rl.prompt())
+                rmChild.on('error', (error: Error) => {
+                    console.log(`Error: ${error.message}`)
+                    rl.prompt();
+                })
+            }
+
         case 'date':
             const dateChild = spawn('date', args, { stdio: 'inherit' });
             dateChild.on('close', () => rl.prompt());
