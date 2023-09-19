@@ -126,6 +126,18 @@ rl.on('line', function (input) {
                 });
             }
             break;
+        case 'rm':
+            if (args.length === 0) {
+                console.log('Usage: rm <file/direcotry>');
+            }
+            else {
+                var rmChild = (0, child_process_1.spawn)('rm', args, { stdio: 'inherit' });
+                rmChild.on('close', function () { return rl.prompt(); });
+                rmChild.on('error', function (error) {
+                    console.log("Error: ".concat(error.message));
+                    rl.prompt();
+                });
+            }
         case 'date':
             var dateChild = (0, child_process_1.spawn)('date', args, { stdio: 'inherit' });
             dateChild.on('close', function () { return rl.prompt(); });
