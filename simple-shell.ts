@@ -96,6 +96,10 @@ rl.on('line', (input) => {
                 })
             }
             break;
+        case 'clear':
+            const clearChild = spawn('clear', args, { stdio: 'inherit' });
+            clearChild.on('close', () => rl.prompt());
+            break;
         default:
             console.log(`Command not found: ${cmd}`);
             rl.prompt()

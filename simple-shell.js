@@ -100,6 +100,10 @@ rl.on('line', function (input) {
                 });
             }
             break;
+        case 'clear':
+            var clearChild = (0, child_process_1.spawn)('clear', args, { stdio: 'inherit' });
+            clearChild.on('close', function () { return rl.prompt(); });
+            break;
         default:
             console.log("Command not found: ".concat(cmd));
             rl.prompt();
@@ -117,4 +121,8 @@ function printHelp() {
     console.log('  echo [text]           - Print text to the console');
     console.log('  pwd                   - Print current directory');
     console.log('  cd <directory>        - Change the current workig directory');
+    console.log('  cat <file>            - Display the content of a file');
+    console.log('  mkdir <directory>     - Create a new directory');
+    console.log('  rmdir <directory>     - remove an empty directory');
+    console.log('  touch <file>          - Create an empty file');
 }
