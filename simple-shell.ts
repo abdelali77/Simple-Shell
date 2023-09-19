@@ -114,4 +114,8 @@ function printHelp() {
     console.log('  echo [text]           - Print text to the console');
     console.log('  pwd                   - Print current directory');
     console.log('  cd <directory>        - Change the current workig directory');
+    console.log('  cat <file>            - Display the content of a file');
+    console.log('  mkdir <directory>     - Create a new directory');
+    console.log('  rmdir <directory>     - remove an empty directory');
+    console.log('  touch <file>          - Create an empty file');
 }
