@@ -146,6 +146,10 @@ rl.on('line', function (input) {
             var clearChild = (0, child_process_1.spawn)('clear', args, { stdio: 'inherit' });
             clearChild.on('close', function () { return rl.prompt(); });
             break;
+        default:
+            console.log("Command not found: ".concat(cmd));
+            rl.prompt();
+            break;
     }
 }).on('close', function () {
     console.log('Bye ✌️');
