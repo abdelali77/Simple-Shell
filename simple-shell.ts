@@ -48,6 +48,54 @@ rl.on('line', (input) => {
             }
             rl.prompt()
             break;
+        case 'cat':
+            if (args.length === 0) {
+                console.log('Usage: cat <file>');
+            } else {
+                const catChild = spawn('cat', args, { stdio: 'inherit' });
+                catChild.on('close', () => rl.prompt())
+                catChild.on('error', (error: Error) => {
+                    console.log(`Error: ${error.message}`)
+                    rl.prompt();
+                })
+            }
+            break;
+        case 'mkdir':
+            if (args.length === 0) {
+                console.log('Usage: mkdir <directory>');
+            } else {
+                const mkdirChild = spawn('mkdir', args, { stdio: 'inherit' });
+                mkdirChild.on('close', () => rl.prompt());
+                mkdirChild.on('error', (error: Error) => {
+                    console.log(`Error: ${error.message}`)
+                    rl.prompt();
+                })
+            }
+            break;
+        case 'rmdir':
+            if (args.length === 0) {
+                console.log('Usage: rmdir <directory>')
+            } else {
+                const rmdirChild = spawn('rmdir', args, { stdio: 'inherit' });
+                rmdirChild.on('close', () => rl.prompt())
+                rmdirChild.on('error', (error: Error) => {
+                    console.log(`Errro: ${error.message}`)
+                    rl.prompt();
+                })
+            }
+            break;
+        case 'touch':
+            if (args.length === 0) {
+                console.log('Usage: touch <file>')
+            } else {
+                const touchChild = spawn('touch', args, { stdio: 'inherit' });
+                touchChild.on('close', () => rl.prompt())
+                touchChild.on('error', (error: Error) => {
+                    console.log(`Error: ${error.message}`)
+                    rl.prompt();
+                })
+            }
+            break;
         default:
             console.log(`Command not found: ${cmd}`);
             rl.prompt()

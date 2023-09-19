@@ -48,6 +48,58 @@ rl.on('line', function (input) {
             }
             rl.prompt();
             break;
+        case 'cat':
+            if (args.length === 0) {
+                console.log('Usage: cat <file>');
+            }
+            else {
+                var catChild = (0, child_process_1.spawn)('cat', args, { stdio: 'inherit' });
+                catChild.on('close', function () { return rl.prompt(); });
+                catChild.on('error', function (error) {
+                    console.log("Error: ".concat(error.message));
+                    rl.prompt();
+                });
+            }
+            break;
+        case 'mkdir':
+            if (args.length === 0) {
+                console.log('Usage: mkdir <directory>');
+            }
+            else {
+                var mkdirChild = (0, child_process_1.spawn)('mkdir', args, { stdio: 'inherit' });
+                mkdirChild.on('close', function () { return rl.prompt(); });
+                mkdirChild.on('error', function (error) {
+                    console.log("Error: ".concat(error.message));
+                    rl.prompt();
+                });
+            }
+            break;
+        case 'rmdir':
+            if (args.length === 0) {
+                console.log('Usage: rmdir <directory>');
+            }
+            else {
+                var rmdirChild = (0, child_process_1.spawn)('rmdir', args, { stdio: 'inherit' });
+                rmdirChild.on('close', function () { return rl.prompt(); });
+                rmdirChild.on('error', function (error) {
+                    console.log("Errro: ".concat(error.message));
+                    rl.prompt();
+                });
+            }
+            break;
+        case 'touch':
+            if (args.length === 0) {
+                console.log('Usage: touch <file>');
+            }
+            else {
+                var touchChild = (0, child_process_1.spawn)('touch', args, { stdio: 'inherit' });
+                touchChild.on('close', function () { return rl.prompt(); });
+                touchChild.on('error', function (error) {
+                    console.log("Error: ".concat(error.message));
+                    rl.prompt();
+                });
+            }
+            break;
         default:
             console.log("Command not found: ".concat(cmd));
             rl.prompt();
