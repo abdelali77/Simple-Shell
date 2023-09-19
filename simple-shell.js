@@ -100,6 +100,23 @@ rl.on('line', function (input) {
                 });
             }
             break;
+        case 'mv':
+            if (args.length !== 2) {
+                console.log('Usage: mv <source> <destination>');
+            }
+            else {
+                var mvChild = (0, child_process_1.spawn)('mv', args, { stdio: 'inherit' });
+                mvChild.on('close', function () { return rl.prompt(); });
+                mvChild.on('error', function (error) {
+                    console.log("Error: ".concat(error.message));
+                    rl.prompt();
+                });
+            }
+            break;
+        case 'date':
+            var dateChild = (0, child_process_1.spawn)('date', args, { stdio: 'inherit' });
+            dateChild.on('close', function () { return rl.prompt(); });
+            break;
         case 'clear':
             var clearChild = (0, child_process_1.spawn)('clear', args, { stdio: 'inherit' });
             clearChild.on('close', function () { return rl.prompt(); });
@@ -125,4 +142,7 @@ function printHelp() {
     console.log('  mkdir <directory>     - Create a new directory');
     console.log('  rmdir <directory>     - remove an empty directory');
     console.log('  touch <file>          - Create an empty file');
+    console.log('  date                  - Display the current date and time');
+    console.log('  mv                    - move or rename file or direcotry');
+    console.log('  clear                 - Clear the terminal');
 }

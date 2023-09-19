@@ -18,23 +18,28 @@ rl.on('line', (input) => {
         case 'exit':
             rl.close();
             break
+
         case 'help':
             printHelp();
             rl.prompt();
             break
+
         case 'ls':
             const lsChild = spawn('ls', args, { stdio: 'inherit' });
             lsChild.on('close', () => rl.prompt())
             break
+
         case 'echo':
             const echoText = args.join(' ')
             console.log(echoText)
             rl.prompt()
             break
+
         case 'pwd':
             const pwdChild = spawn('pwd', args, { stdio: 'inherit' });
             pwdChild.on('close', () => rl.prompt())
             break;
+
         case 'cd':
             if (args.length === 0) {
                 console.log('Usage: cd <directory>')
@@ -48,6 +53,7 @@ rl.on('line', (input) => {
             }
             rl.prompt()
             break;
+
         case 'cat':
             if (args.length === 0) {
                 console.log('Usage: cat <file>');
@@ -60,6 +66,7 @@ rl.on('line', (input) => {
                 })
             }
             break;
+
         case 'mkdir':
             if (args.length === 0) {
                 console.log('Usage: mkdir <directory>');
@@ -72,6 +79,7 @@ rl.on('line', (input) => {
                 })
             }
             break;
+
         case 'rmdir':
             if (args.length === 0) {
                 console.log('Usage: rmdir <directory>')
@@ -84,6 +92,7 @@ rl.on('line', (input) => {
                 })
             }
             break;
+
         case 'touch':
             if (args.length === 0) {
                 console.log('Usage: touch <file>')
@@ -96,10 +105,30 @@ rl.on('line', (input) => {
                 })
             }
             break;
+
+        case 'mv':
+            if (args.length !== 2) {
+                console.log('Usage: mv <source> <destination>');
+            } else {
+                const mvChild = spawn('mv', args, { stdio: 'inherit' });
+                mvChild.on('close', () => rl.prompt());
+                mvChild.on('error', (error: Error) => {
+                    console.log(`Error: ${error.message}`)
+                    rl.prompt();
+                })
+            }
+            break;
+
+        case 'date':
+            const dateChild = spawn('date', args, { stdio: 'inherit' });
+            dateChild.on('close', () => rl.prompt());
+            break;
+
         case 'clear':
             const clearChild = spawn('clear', args, { stdio: 'inherit' });
             clearChild.on('close', () => rl.prompt());
             break;
+
         default:
             console.log(`Command not found: ${cmd}`);
             rl.prompt()
@@ -122,4 +151,7 @@ function printHelp() {
     console.log('  mkdir <directory>     - Create a new directory');
     console.log('  rmdir <directory>     - remove an empty directory');
     console.log('  touch <file>          - Create an empty file');
+    console.log('  date                  - Display the current date and time');
+    console.log('  mv                    - move or rename file or direcotry');
+    console.log('  clear                 - Clear the terminal');
 }
