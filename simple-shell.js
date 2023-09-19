@@ -171,5 +171,4 @@ function printHelp() {
     console.log('  mv <src> <dest>       - move or rename file or direcotry');
     console.log('  cp <src> <dest>       - Copy file or directory');
     console.log('  rm <file/direcotry>   - Remove file or directory');
-    console.log('  clear                 - Clear the terminal');
 }
