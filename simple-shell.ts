@@ -144,6 +144,45 @@ rl.on('line', (input) => {
                 })
             }
 
+        case 'find':
+            if (args.length !== 1) {
+                console.log('Usage: find <directory>');
+            } else {
+                const findChild = spawn('find', args, { stdio: 'inherit' })
+                findChild.on('close', () => rl.prompt())
+                findChild.on('error', (error: Error) => {
+                    console.log(`Error: ${error.message}`)
+                    rl.prompt();
+                })
+            }
+            break;
+
+        case 'grep':
+            if (args.length < 2) {
+                console.log('Usage: grep <pattern> <file>');
+            } else {
+                const grepChild = spawn('grep', args, { stdio: 'inherit' });
+                grepChild.on('close', () => rl.prompt());
+                grepChild.on('error', (error: Error) => {
+                    console.log(`Error: ${error.message}`)
+                    rl.prompt()
+                })
+            }
+            break;
+
+        case 'wc':
+            if (args.length !== 1) {
+                console.log('Usage: wc <file>');
+            } else {
+                const wcChild = spawn('wc', args, { stdio: 'inherit' });
+                wcChild.on('close', () => rl.prompt())
+                wcChild.on('error', (error: Error) => {
+                    console.log(`Error: ${error.message}`)
+                    rl.prompt();
+                })
+            }
+            break;
+
         case 'date':
             const dateChild = spawn('date', args, { stdio: 'inherit' });
             dateChild.on('close', () => rl.prompt());
@@ -180,5 +219,7 @@ function printHelp() {
     console.log('  mv <src> <dest>       - move or rename file or direcotry');
     console.log('  cp <src> <dest>       - Copy file or directory');
     console.log('  rm <file/direcotry>   - Remove file or directory')
+    console.log('  find <direcotry>      - Search for files and directories')
+    console.log('  grep <pattern> <file> - Search for text patterns in files')
     console.log('  clear                 - Clear the terminal');
 }

@@ -138,6 +138,45 @@ rl.on('line', function (input) {
                     rl.prompt();
                 });
             }
+        case 'find':
+            if (args.length !== 1) {
+                console.log('Usage: find <directory>');
+            }
+            else {
+                var findChild = (0, child_process_1.spawn)('find', args, { stdio: 'inherit' });
+                findChild.on('close', function () { return rl.prompt(); });
+                findChild.on('error', function (error) {
+                    console.log("Error: ".concat(error.message));
+                    rl.prompt();
+                });
+            }
+            break;
+        case 'grep':
+            if (args.length < 2) {
+                console.log('Usage: grep <pattern> <file>');
+            }
+            else {
+                var grepChild = (0, child_process_1.spawn)('grep', args, { stdio: 'inherit' });
+                grepChild.on('close', function () { return rl.prompt(); });
+                grepChild.on('error', function (error) {
+                    console.log("Error: ".concat(error.message));
+                    rl.prompt();
+                });
+            }
+            break;
+        case 'wc':
+            if (args.length !== 1) {
+                console.log('Usage: wc <file>');
+            }
+            else {
+                var wcChild = (0, child_process_1.spawn)('wc', args, { stdio: 'inherit' });
+                wcChild.on('close', function () { return rl.prompt(); });
+                wcChild.on('error', function (error) {
+                    console.log("Error: ".concat(error.message));
+                    rl.prompt();
+                });
+            }
+            break;
         case 'date':
             var dateChild = (0, child_process_1.spawn)('date', args, { stdio: 'inherit' });
             dateChild.on('close', function () { return rl.prompt(); });
@@ -171,5 +210,7 @@ function printHelp() {
     console.log('  mv <src> <dest>       - move or rename file or direcotry');
     console.log('  cp <src> <dest>       - Copy file or directory');
     console.log('  rm <file/direcotry>   - Remove file or directory');
+    console.log('  find <direcotry>      - Search for files and directories');
+    console.log('  grep <pattern> <file> - Search for text patterns in files');
     console.log('  clear                 - Clear the terminal');
 }
