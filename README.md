@@ -1,5 +1,6 @@
 # Simple TypeScript Shell
-A basic shell implementation in TypeScript that allows you to execute system commands and custom commands
+
+a simple command-line interface (CLI) written in TypeScript that mimics a Unix-like shell. It allows you to run various commands and perform common file operations within the shell environment.
 
 ## Features
 - Excute system shell commands
@@ -7,24 +8,26 @@ A basic shell implementation in TypeScript that allows you to execute system com
 - Add and execute custom commands
 
 ## Prerequisites
-Before you begin, ensure you have met the following requirements:
+- Node.js installed [Nodejs.org](https://nodejs.org/)
+- npm package manager (usually included with Node.js)
 
-- Node.js and npm installed on your system
 ```bash
 npm install
-```
-
-[Nodejs](https://nodejs.org/en)
-
-## Installation
-clone the repository:
-```bash
-git clone https://github.com/abdelali77/Simple-Shell.git
 ```
 
 ## Usage
 ```bash
 npm start
+```
+
+- To see the list of available commands and their usage, use the `help` command:
+```bash
+MyShell> help
+```
+
+- To exit the shell, use the `exit` command:
+```bash
+MyShell> exit
 ```
 
 ## LICENSE
