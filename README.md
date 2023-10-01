@@ -24,7 +24,6 @@ npm start
 ```bash
 MyShell> help
 ```
-
 - To exit the shell, use the `exit` command:
 ```bash
 MyShell> exit
