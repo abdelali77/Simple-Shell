@@ -213,5 +213,4 @@ function printHelp() {
     console.log('  find <direcotry>      - Search for files and directories');
     console.log('  grep <pattern> <file> - Search for text patterns in files');
     console.log('  wc <file>             - Count lines, words, and characters in a file');
-    console.log('  clear                 - Clear the terminal');
 }
