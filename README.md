@@ -1,5 +1,4 @@
 # Simple TypeScript Shell
-
 a simple command-line interface (CLI) written in TypeScript that mimics a Unix-like shell. It allows you to run various commands and perform common file operations within the shell environment.
 
 ## Features
