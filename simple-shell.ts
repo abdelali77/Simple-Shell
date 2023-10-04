@@ -199,7 +199,7 @@ rl.on('line', (input) => {
             break;
     }
 }).on('close', () => {
-    console.log('Bye ✌️')
+    console.log('Bye✋')
     process.exit(0)
 })
 
