@@ -191,7 +191,7 @@ rl.on('line', function (input) {
             break;
     }
 }).on('close', function () {
-    console.log('Bye ✌️');
+    console.log('Bye✋');
     process.exit(0);
 });
 function printHelp() {
